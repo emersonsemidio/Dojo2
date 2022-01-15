@@ -7,7 +7,7 @@ public class CadastroCliente extends Cliente {
     public ArrayList<Cliente> dadosCliente = new ArrayList();
     Scanner scan = new Scanner(System.in);
 
-    public CadastroCliente(java.lang.String nome, java.lang.String cpf) {
+    public CadastroCliente(java.lang.String nome, int cpf) {
         super(nome, cpf);
 
     }
@@ -15,8 +15,11 @@ public class CadastroCliente extends Cliente {
              System.out.println("Nome: ");
              setNome(scan.next());
 
-             System.out.println("Cpf");
-             setCpf(scan.next());
+
+             do {
+                 System.out.println("Cpf");
+                 setCpf(scan.nextInt());
+             }while(getCpf() > 10 && getCpf() < 20);
 
              dadosCliente.add(new Cliente(getNome(), getCpf()));
 

@@ -7,7 +7,7 @@ public class RemoverCliente extends CadastroCliente {
     ArrayList<Cliente> remocaoCliente = new ArrayList();
     Scanner scan = new Scanner(System.in);
 
-    public RemoverCliente(String nome, String cpf) {
+    public RemoverCliente(String nome, int cpf) {
         super(nome, cpf);
     }
 
@@ -16,21 +16,16 @@ public class RemoverCliente extends CadastroCliente {
         setNome(scan.next());
 
         System.out.println("Cpf a ser removido: ");
-        setCpf(scan.next());
+        setCpf(scan.nextInt());
 
         remocaoCliente.add(new Cliente(getNome(), getCpf()));
 
-        String nome = new String("primeiro");
-        String cpf = new String("123");
-
         for(int i=0;i<clientesCadastrados.size(); i++){
-            /*if(clientesCadastrados.contains(remocaoCliente)){
-                clientesCadastrados.remove(remocaoCliente);
-            }*/
+
             System.out.println("Lendo atualmente");
             System.out.println(clientesCadastrados.get(i).getNome());
             System.out.println("Lido");
-            if (clientesCadastrados.get(i).getNome().equalsIgnoreCase(nome) && clientesCadastrados.get(i).getCpf().equalsIgnoreCase(cpf)) {
+            if (clientesCadastrados.get(i).getNome().equalsIgnoreCase(getNome()) && clientesCadastrados.get(i).getCpf() == getCpf()) {
                 clientesCadastrados.remove(i);
                 System.out.println("Removendo item");
                 System.out.println(i);
@@ -38,9 +33,6 @@ public class RemoverCliente extends CadastroCliente {
             }
         }
 
-
-
-        // clientesCadastrados.remove(0);
 
 
         return clientesCadastrados;
@@ -54,8 +46,4 @@ public class RemoverCliente extends CadastroCliente {
         this.remocaoCliente = remocaoCliente;
     }
 
-    public ArrayList<Cliente> removerCliente2(ArrayList<Cliente> clientesCadastrados) {
-        // clientesCadastrados.get(1);
-        return clientesCadastrados;
-    }
 }

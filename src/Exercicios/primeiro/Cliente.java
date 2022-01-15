@@ -2,9 +2,9 @@ package Exercicios.primeiro;
 
 public class Cliente {
     private java.lang.String nome;
-    private java.lang.String cpf;
+    private int cpf;
 
-    public Cliente(java.lang.String nome, java.lang.String cpf) {
+    public Cliente(java.lang.String nome, int cpf) {
         this.nome = nome;
         this.cpf = cpf;
     }
@@ -13,7 +13,7 @@ public class Cliente {
         return nome;
     }
 
-    public java.lang.String getCpf() {
+    public int getCpf() {
         return cpf;
     }
 
@@ -21,7 +21,7 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public void setCpf(java.lang.String cpf) {
+    public void setCpf(int cpf) {
         this.cpf = cpf;
     }
 }
