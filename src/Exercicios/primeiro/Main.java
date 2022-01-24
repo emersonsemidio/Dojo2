@@ -16,27 +16,8 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca();
         int fon;
 
-        do{
-            biblioteca.cadastrarCliente();
+        biblioteca.menuInicial();
 
-            System.out.println("parada");
-            fon = scan.nextInt();
-        }while (fon!=0);
-
-        biblioteca.listarClientesCadastrados();
-        biblioteca.removerCliente();
-        biblioteca.listarClientesCadastrados();
-
-        do{
-            biblioteca.cadastrarLivro();
-
-            System.out.println("parada");
-            fon = scan.nextInt();
-        }while(fon!=0);
-
-        biblioteca.listarLivros();
-        biblioteca.removerLivros();
-        biblioteca.listarLivros();
     }
 
 

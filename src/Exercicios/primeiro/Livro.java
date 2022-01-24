@@ -8,6 +8,8 @@ public class Livro {
     private String titulo;
     private String editora;
     private Date dataPublicacao;
+    private int ID;
+
 
     public Livro(String autor, String titulo, String editora, Date dataPublicacao) {
         this.autor = autor;
@@ -16,9 +18,13 @@ public class Livro {
         this.dataPublicacao = dataPublicacao;
     }
 
-    public Livro() {
+    public int getID() {
+        return ID;
     }
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getEditora() {
         return editora;
