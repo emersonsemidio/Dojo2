@@ -251,8 +251,6 @@ public class Biblioteca {
                     alugandoLivro.isAlugado = true;
                     clienteEncontrado.adicionarLivroAlugado(alugandoLivro);
                     menuInicial();
-
-                    //Está dando para um cliente alugar um livro que está alugado no momento.
                 }
             } else {
                 System.out.println("Livro não encontrado");
@@ -285,11 +283,13 @@ public class Biblioteca {
 
         System.out.println("Qual livro deseja devolver? ");
         livroParaDevolver = scan.next();
+        int indiceLivroParaDevolver = buscarIndiceLivro(livroParaDevolver);
 
-        while(buscarIndiceLivro(livroParaDevolver)==-1){
+        while(indiceLivroParaDevolver==-1){
             System.out.println("Livro não encontrado");
             System.out.println("Qual livro deseja devolver? ");
             livroParaDevolver = scan.next();
+            indiceLivroParaDevolver = buscarIndiceLivro(livroParaDevolver);
         }
 
         System.out.println("Cpf");
@@ -305,8 +305,13 @@ public class Biblioteca {
             if(dadosAlugueis.get(i).getCpf().equalsIgnoreCase(cpf) && dadosAlugueis.get(i).getLivroAlugado().equalsIgnoreCase(livroParaDevolver)){
                 System.out.println("Livro devolvido");
                 dadosAlugueis.get(i).setAlugado(false);
+                dadosLivros.get(indiceLivroParaDevolver).isAlugado = false;
                 menuInicial();
+                return;
             }
         }
+
+        System.out.println("Não foi encontrado um livro com esse titulo e associado a esse usuário");
+        menuInicial();
     }
 }
