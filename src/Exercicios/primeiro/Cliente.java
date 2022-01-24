@@ -68,8 +68,10 @@ public class Cliente {
         }
 
         for (int i = tamanhoLista; i > minimo; i--) {
-            // if (i < 0) break;
-            if (dadosAlugueisPorCliente.get(i).getLivroAlugado().equalsIgnoreCase(tituloLivroAtualQuerAlugar)) {
+            int indice = i - 1;
+            Aluguel aluguel = dadosAlugueisPorCliente.get(indice);
+
+            if (aluguel.getLivroAlugado().equalsIgnoreCase(tituloLivroAtualQuerAlugar)) {
                 return false;
             }
         }

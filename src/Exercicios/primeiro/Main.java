@@ -15,6 +15,8 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         Biblioteca biblioteca = new Biblioteca();
         int fon;
+        biblioteca.CadastrarClientes();
+        biblioteca.CadastrarLivros();
 
         biblioteca.menuInicial();
 
