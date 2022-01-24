@@ -239,13 +239,21 @@ public class Biblioteca {
 
             if (indiceLivroEncontrado >= 0) {//Encontrou o livro na biblioteca
 
-                System.out.println("Livro alugado");
-                dadosAlugueis.add(alugandoLivro);
-                alugandoLivro.isAlugado = true;
-                clienteEncontrado.adicionarLivroAlugado(alugandoLivro);
-                menuInicial();
+                Livro liv =  buscarLivro(livroAlugado);
 
-                //Está dando para um cliente alugar um livro que está alugado no momento.
+                if (liv.isAlugado == true) {
+                    System.out.println("Livro já está alugado");
+                    menuInicial();
+                } else {
+                    System.out.println("Livro alugado");
+                    dadosAlugueis.add(alugandoLivro);
+                    dadosLivros.get(indiceLivroEncontrado).isAlugado = true;
+                    alugandoLivro.isAlugado = true;
+                    clienteEncontrado.adicionarLivroAlugado(alugandoLivro);
+                    menuInicial();
+
+                    //Está dando para um cliente alugar um livro que está alugado no momento.
+                }
             } else {
                 System.out.println("Livro não encontrado");
                 menuInicial();
@@ -259,6 +267,16 @@ public class Biblioteca {
             }
         }
         return -1;
+    }
+
+    public Livro buscarLivro(String titulo) {
+        int indiceLivro = buscarIndiceLivro(titulo);
+
+        if (indiceLivro >= 0) {
+            return dadosLivros.get(indiceLivro);
+        } else {
+            return null;
+        }
     }
 
     public void devolverLivro(){

@@ -8,6 +8,7 @@ public class Livro {
     private String titulo;
     private String editora;
     private Date dataPublicacao;
+    public boolean isAlugado;
     private int ID;
 
 
