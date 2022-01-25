@@ -20,14 +20,14 @@ public class Cliente {
         this.dadosAlugueisPorCliente = dadosAlugueisPorCliente;
     }
 
-    public void adicionarLivroAlugado(Aluguel aluguel){
+    public void adicionarLivroAlugado(Aluguel aluguel) {
         dadosAlugueisPorCliente.add(aluguel);
     }
 
     public int buscarQuantidadeLivrosAlugados() {
         int quantidadeLivrosAlugados = 0;
 
-        for (int i = 0; i <dadosAlugueisPorCliente.size(); i++) {
+        for (int i = 0; i < dadosAlugueisPorCliente.size(); i++) {
             if (dadosAlugueisPorCliente.get(i).isAlugado() == true) {
                 quantidadeLivrosAlugados++;
             }

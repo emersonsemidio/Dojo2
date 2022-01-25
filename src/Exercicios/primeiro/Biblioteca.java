@@ -9,10 +9,9 @@ public class Biblioteca {
     private ArrayList<Cliente> dadosCliente = new ArrayList();
     private ArrayList<Aluguel> dadosAlugueis = new ArrayList();
     private Scanner scan = new Scanner(System.in);
-    private int idLivro=1;
+    private int idLivro = 1;
 
-
-    public void menuInicial(){
+    public void menuInicial() {
         int numero;
 
         System.out.println("""
@@ -29,43 +28,42 @@ public class Biblioteca {
         System.out.println("Digite o que deseja fazer");
         numero = scan.nextInt();
 
-
-            switch (numero) {
-                case 0:
-                    System.out.println("Programa encerrado");
-                    break;
-                case 1:
-                    cadastrarCliente();
-                    break;
-                case 2:
-                    cadastrarLivro();
-                    break;
-                case 3:
-                    removerCliente();
-                    break;
-                case 4:
-                    removerLivros();
-                    break;
-                case 5:
-                    listarClientesCadastrados();
-                    break;
-                case 6:
-                    listarLivros();
-                    break;
-                case 7:
-                    alugarLivro();
-                    break;
-                case 8:
-                    devolverLivro();
-                    break;
-                default:
-                    System.out.println("Digite uma opção válida");
-                    menuInicial();
-                    break;
-            }
+        switch (numero) {
+            case 0:
+                System.out.println("Programa encerrado");
+                break;
+            case 1:
+                cadastrarCliente();
+                break;
+            case 2:
+                cadastrarLivro();
+                break;
+            case 3:
+                removerCliente();
+                break;
+            case 4:
+                removerLivros();
+                break;
+            case 5:
+                listarClientesCadastrados();
+                break;
+            case 6:
+                listarLivros();
+                break;
+            case 7:
+                alugarLivro();
+                break;
+            case 8:
+                devolverLivro();
+                break;
+            default:
+                System.out.println("Digite uma opção válida");
+                menuInicial();
+                break;
+        }
     }
 
-    public void cadastrarCliente(){
+    public void cadastrarCliente() {
         String nome;
         String cpf;
 
@@ -75,7 +73,7 @@ public class Biblioteca {
         do {
             System.out.println("Cpf");
             cpf = scan.next();
-        }while (buscarClientePorCpf(cpf) != null);
+        } while (buscarClientePorCpf(cpf) != null);
 
         Cliente clienteNovo = new Cliente(nome, cpf);
 
@@ -83,9 +81,9 @@ public class Biblioteca {
         menuInicial();
     }
 
-    public void listarClientesCadastrados(){
+    public void listarClientesCadastrados() {
 
-        for(int i=0; i<dadosCliente.size(); i++){
+        for (int i = 0; i < dadosCliente.size(); i++) {
             System.out.println(dadosCliente.get(i).getCpf());
             System.out.println(dadosCliente.get(i).getNome());
             System.out.println("-------------\n");
@@ -93,32 +91,31 @@ public class Biblioteca {
         menuInicial();
     }
 
-    public void removerCliente(){
+    public void removerCliente() {
         String cpf;
         System.out.println("Digite o cpf a ser removido");
         cpf = scan.next();
 
-        for(int i=0; i<dadosCliente.size(); i++){
-          if(dadosCliente.get(i).getCpf().equalsIgnoreCase(cpf)){
-              dadosCliente.remove(i);
-              System.out.println("Cliente removido");
-              menuInicial();
-          }else{
-              System.out.println("Cliente não encontrado");
-              menuInicial();
-          }
+        for (int i = 0; i < dadosCliente.size(); i++) {
+            if (dadosCliente.get(i).getCpf().equalsIgnoreCase(cpf)) {
+                dadosCliente.remove(i);
+                System.out.println("Cliente removido");
+                menuInicial();
+            } else {
+                System.out.println("Cliente não encontrado");
+                menuInicial();
+            }
         }
     }
 
-    public void cadastrarLivro(){
-         String autor;
-         String titulo;
-         String editora;
-         int dia, mes, ano;
+    public void cadastrarLivro() {
+        String autor;
+        String titulo;
+        String editora;
+        int dia, mes, ano;
 
-
-         System.out.println("Autor");
-         autor = scan.next();
+        System.out.println("Autor");
+        autor = scan.next();
 
         System.out.println("titulo");
         titulo = scan.next();
@@ -126,51 +123,50 @@ public class Biblioteca {
         System.out.println("editora");
         editora = scan.next();
 
-        do{
+        do {
             System.out.println("Dia");
             dia = scan.nextInt();
-        }while(dia>30 && dia<1);
+        } while (dia > 30 && dia < 1);
 
-        do{
+        do {
             System.out.println("Mês");
             mes = scan.nextInt();
-        }while(mes>12 && mes<1);
+        } while (mes > 12 && mes < 1);
 
         Date anoAtual = new Date();
         int year = anoAtual.getYear();
 
-        do{
+        do {
             System.out.println("Ano");
             ano = scan.nextInt();
-        }while(ano>year && ano<1900);
+        } while (ano > year && ano < 1900);
 
         Livro livro = new Livro(autor, titulo, editora, new Date(ano, mes, dia));
 
-
-       if(verificarLivroCadastrado(livro)==true){
-           System.out.println("Livro já existe");
-           menuInicial();
-       }else{
-           livro.setID(idLivro++);
-           dadosLivros.add(livro);
-           menuInicial();
-       }
-
+        if (verificarLivroCadastrado(livro) == true) {
+            System.out.println("Livro já existe");
+            menuInicial();
+        } else {
+            livro.setID(idLivro++);
+            dadosLivros.add(livro);
+            menuInicial();
+        }
 
     }
 
-    public boolean verificarLivroCadastrado(Livro livro){
-        for(int i=0;i<dadosLivros.size();i++){
-            if(dadosLivros.get(i).getTitulo().equalsIgnoreCase(livro.getTitulo()) && dadosLivros.get(i).getEditora().equalsIgnoreCase(livro.getEditora())){
+    public boolean verificarLivroCadastrado(Livro livro) {
+        for (int i = 0; i < dadosLivros.size(); i++) {
+            if (dadosLivros.get(i).getTitulo().equalsIgnoreCase(livro.getTitulo())
+                    && dadosLivros.get(i).getEditora().equalsIgnoreCase(livro.getEditora())) {
                 return true;
             }
         }
         return false;
     }
 
-    public void listarLivros(){
+    public void listarLivros() {
 
-        for(int i=0; i<dadosLivros.size(); i++){
+        for (int i = 0; i < dadosLivros.size(); i++) {
             System.out.println(dadosLivros.get(i).getAutor());
             System.out.println();
             System.out.println(dadosLivros.get(i).getTitulo());
@@ -180,14 +176,14 @@ public class Biblioteca {
         menuInicial();
     }
 
-    public void removerLivros(){
+    public void removerLivros() {
         String titulo;
 
         System.out.println("Titulo");
         titulo = scan.next();
 
-        for(int i=0; i< dadosLivros.size(); i++){
-            if(dadosLivros.get(i).getTitulo().equalsIgnoreCase(titulo)){
+        for (int i = 0; i < dadosLivros.size(); i++) {
+            if (dadosLivros.get(i).getTitulo().equalsIgnoreCase(titulo)) {
                 dadosLivros.remove(i);
                 System.out.println("Livro removido");
                 menuInicial();
@@ -195,9 +191,9 @@ public class Biblioteca {
         }
     }
 
-    public Cliente buscarClientePorCpf(String cpf){
-        for(int i=0;i<dadosCliente.size(); i++){
-            if(dadosCliente.get(i).getCpf().equalsIgnoreCase(cpf)){
+    public Cliente buscarClientePorCpf(String cpf) {
+        for (int i = 0; i < dadosCliente.size(); i++) {
+            if (dadosCliente.get(i).getCpf().equalsIgnoreCase(cpf)) {
                 return dadosCliente.get(i);
             }
         }
@@ -205,7 +201,7 @@ public class Biblioteca {
         return null;
     }
 
-    public void alugarLivro(){
+    public void alugarLivro() {
         String livroAlugado;
         String cpf;
         Cliente clienteEncontrado;
@@ -213,7 +209,7 @@ public class Biblioteca {
         System.out.println("Cpf");
         cpf = scan.next();
 
-        clienteEncontrado =  buscarClientePorCpf(cpf);
+        clienteEncontrado = buscarClientePorCpf(cpf);
         if (clienteEncontrado == null) {
             System.out.println("Cliente não encontrado");
             menuInicial();
@@ -229,8 +225,8 @@ public class Biblioteca {
             return;
         }
 
-            System.out.println("Qual livro deseja alugar?");
-            livroAlugado = scan.next();
+        System.out.println("Qual livro deseja alugar?");
+        livroAlugado = scan.next();
 
         boolean isPodeAlugarLivro = clienteEncontrado.verificarTresUltimosLivrosAlugados(livroAlugado);
 
@@ -240,29 +236,29 @@ public class Biblioteca {
             return;
         }
 
-            Aluguel alugandoLivro = new Aluguel(livroAlugado, cpf);
+        Aluguel alugandoLivro = new Aluguel(livroAlugado, cpf);
 
-            int indiceLivroEncontrado = buscarIndiceLivro(livroAlugado);
+        int indiceLivroEncontrado = buscarIndiceLivro(livroAlugado);
 
-            if (indiceLivroEncontrado >= 0) {//Encontrou o livro na biblioteca
+        if (indiceLivroEncontrado >= 0) {// Encontrou o livro na biblioteca
 
-                Livro liv =  buscarLivro(livroAlugado);
+            Livro liv = buscarLivro(livroAlugado);
 
-                if (liv.isAlugado == true) {
-                    System.out.println("Livro já está alugado");
-                    menuInicial();
-                } else {
-                    System.out.println("Livro alugado");
-                    dadosAlugueis.add(alugandoLivro);
-                    dadosLivros.get(indiceLivroEncontrado).isAlugado = true;
-                    alugandoLivro.isAlugado = true;
-                    clienteEncontrado.adicionarLivroAlugado(alugandoLivro);
-                    menuInicial();
-                }
+            if (liv.isAlugado == true) {
+                System.out.println("Livro já está alugado");
+                menuInicial();
             } else {
-                System.out.println("Livro não encontrado");
+                System.out.println("Livro alugado");
+                dadosAlugueis.add(alugandoLivro);
+                dadosLivros.get(indiceLivroEncontrado).isAlugado = true;
+                alugandoLivro.isAlugado = true;
+                clienteEncontrado.adicionarLivroAlugado(alugandoLivro);
                 menuInicial();
             }
+        } else {
+            System.out.println("Livro não encontrado");
+            menuInicial();
+        }
     }
 
     public int buscarIndiceLivro(String titulo) {
@@ -284,7 +280,7 @@ public class Biblioteca {
         }
     }
 
-    public void devolverLivro(){
+    public void devolverLivro() {
         String livroParaDevolver;
         String cpf;
 
@@ -292,7 +288,7 @@ public class Biblioteca {
         livroParaDevolver = scan.next();
         int indiceLivroParaDevolver = buscarIndiceLivro(livroParaDevolver);
 
-        while(indiceLivroParaDevolver==-1){
+        while (indiceLivroParaDevolver == -1) {
             System.out.println("Livro não encontrado");
             System.out.println("Qual livro deseja devolver? ");
             livroParaDevolver = scan.next();
@@ -302,14 +298,16 @@ public class Biblioteca {
         System.out.println("Cpf");
         cpf = scan.next();
 
-        while (buscarClientePorCpf(cpf)==null){
+        while (buscarClientePorCpf(cpf) == null) {
             System.out.println("Cpf não encontrado");
             System.out.println("Cpf: ");
             cpf = scan.next();
         }
 
-        for(int i=0; i<dadosAlugueis.size(); i++){
-            if(dadosAlugueis.get(i).getCpf().equalsIgnoreCase(cpf) && dadosAlugueis.get(i).getLivroAlugado().equalsIgnoreCase(livroParaDevolver) && dadosAlugueis.get(i).isAlugado == true){
+        for (int i = 0; i < dadosAlugueis.size(); i++) {
+            if (dadosAlugueis.get(i).getCpf().equalsIgnoreCase(cpf)
+                    && dadosAlugueis.get(i).getLivroAlugado().equalsIgnoreCase(livroParaDevolver)
+                    && dadosAlugueis.get(i).isAlugado == true) {
                 System.out.println("Livro devolvido");
                 dadosAlugueis.get(i).setAlugado(false);
                 dadosLivros.get(indiceLivroParaDevolver).isAlugado = false;

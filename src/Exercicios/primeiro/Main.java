@@ -11,7 +11,7 @@ public class Main {
         abc();
     }
 
-    public static void abc(){
+    public static void abc() {
         Scanner scan = new Scanner(System.in);
         Biblioteca biblioteca = new Biblioteca();
         int fon;
@@ -21,6 +21,5 @@ public class Main {
         biblioteca.menuInicial();
 
     }
-
 
 }

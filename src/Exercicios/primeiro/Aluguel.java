@@ -19,8 +19,6 @@ public class Aluguel {
         this.livroAlugado = livroAlugado;
     }
 
-
-
     public String getCpf() {
         return cpf;
     }

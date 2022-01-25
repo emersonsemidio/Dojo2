@@ -11,7 +11,6 @@ public class Livro {
     public boolean isAlugado;
     private int ID;
 
-
     public Livro(String autor, String titulo, String editora, Date dataPublicacao) {
         this.autor = autor;
         this.titulo = titulo;
