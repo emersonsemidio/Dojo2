@@ -108,6 +108,16 @@ public class Biblioteca {
         }
     }
 
+    public Cliente buscarClientePorCpf(String cpf) {
+        for (int i = 0; i < dadosCliente.size(); i++) {
+            if (dadosCliente.get(i).getCpf().equalsIgnoreCase(cpf)) {
+                return dadosCliente.get(i);
+            }
+        }
+
+        return null;
+    }
+
     public void cadastrarLivro() {
         String autor;
         String titulo;
@@ -154,16 +164,6 @@ public class Biblioteca {
 
     }
 
-    public boolean verificarLivroCadastrado(Livro livro) {
-        for (int i = 0; i < dadosLivros.size(); i++) {
-            if (dadosLivros.get(i).getTitulo().equalsIgnoreCase(livro.getTitulo())
-                    && dadosLivros.get(i).getEditora().equalsIgnoreCase(livro.getEditora())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void listarLivros() {
 
         for (int i = 0; i < dadosLivros.size(); i++) {
@@ -191,14 +191,14 @@ public class Biblioteca {
         }
     }
 
-    public Cliente buscarClientePorCpf(String cpf) {
-        for (int i = 0; i < dadosCliente.size(); i++) {
-            if (dadosCliente.get(i).getCpf().equalsIgnoreCase(cpf)) {
-                return dadosCliente.get(i);
+    public boolean verificarLivroCadastrado(Livro livro) {
+        for (int i = 0; i < dadosLivros.size(); i++) {
+            if (dadosLivros.get(i).getTitulo().equalsIgnoreCase(livro.getTitulo())
+                    && dadosLivros.get(i).getEditora().equalsIgnoreCase(livro.getEditora())) {
+                return true;
             }
         }
-
-        return null;
+        return false;
     }
 
     public void alugarLivro() {
@@ -318,34 +318,5 @@ public class Biblioteca {
 
         System.out.println("Não foi encontrado um livro com esse titulo e associado a esse usuário");
         menuInicial();
-    }
-
-    public void CadastrarLivros() {
-        Livro liv1 = new Livro("Autor1", "Titulo1", "Editora1", new Date());
-        Livro liv2 = new Livro("Autor2", "Titulo2", "Editora2", new Date());
-        Livro liv3 = new Livro("Autor3", "Titulo3", "Editora3", new Date());
-        Livro liv4 = new Livro("Autor4", "Titulo4", "Editora4", new Date());
-        Livro liv5 = new Livro("Autor5", "Titulo5", "Editora5", new Date());
-        this.dadosLivros.add(liv1);
-        this.dadosLivros.add(liv2);
-        this.dadosLivros.add(liv3);
-        this.dadosLivros.add(liv4);
-        this.dadosLivros.add(liv5);
-        System.out.println("Livros cadastrados com sucesso");
-
-    }
-
-    public void CadastrarClientes() {
-        Cliente cli1 = new Cliente("Nome1", "1");
-        Cliente cli2 = new Cliente("Nome2", "2");
-        Cliente cli3 = new Cliente("Nome3", "3");
-        Cliente cli4 = new Cliente("Nome4", "4");
-        Cliente cli5 = new Cliente("Nome5", "5");
-        this.dadosCliente.add(cli1);
-        this.dadosCliente.add(cli2);
-        this.dadosCliente.add(cli3);
-        this.dadosCliente.add(cli4);
-        this.dadosCliente.add(cli5);
-        System.out.println("Clientes cadastrados com sucesso");
     }
 }

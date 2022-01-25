@@ -20,22 +20,6 @@ public class Cliente {
         this.dadosAlugueisPorCliente = dadosAlugueisPorCliente;
     }
 
-    public void adicionarLivroAlugado(Aluguel aluguel) {
-        dadosAlugueisPorCliente.add(aluguel);
-    }
-
-    public int buscarQuantidadeLivrosAlugados() {
-        int quantidadeLivrosAlugados = 0;
-
-        for (int i = 0; i < dadosAlugueisPorCliente.size(); i++) {
-            if (dadosAlugueisPorCliente.get(i).isAlugado() == true) {
-                quantidadeLivrosAlugados++;
-            }
-        }
-
-        return quantidadeLivrosAlugados;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -50,6 +34,24 @@ public class Cliente {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+
+
+    public void adicionarLivroAlugado(Aluguel aluguel) {
+        dadosAlugueisPorCliente.add(aluguel);
+    }
+
+    public int buscarQuantidadeLivrosAlugados() {
+        int quantidadeLivrosAlugados = 0;
+
+        for (int i = 0; i < dadosAlugueisPorCliente.size(); i++) {
+            if (dadosAlugueisPorCliente.get(i).isAlugado() == true) {
+                quantidadeLivrosAlugados++;
+            }
+        }
+
+        return quantidadeLivrosAlugados;
     }
 
     public boolean verificarTresUltimosLivrosAlugados(String tituloLivroAtualQuerAlugar) {
